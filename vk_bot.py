@@ -29,3 +29,10 @@ class VkBot:
             self.vk_api.messages.send(user_id=event.user_id,
                                       message=df_response.fulfillment_text,
                                       random_id=random.randint(1, 1000))
+
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
+
+    vk_bot = VkBot()
+    vk_bot.start_bot()

@@ -1,6 +1,8 @@
-import os
 import logging
+import os
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
 from dialogflow_service import DialogFlowService
 
 
@@ -36,3 +38,11 @@ class TelegramBot:
     def stop_bot(self):
         logging.info('Telegram bot stopped')
         self.updater.idle()
+
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
+
+    telegram_bot = TelegramBot()
+    telegram_bot.start_bot()
+    telegram_bot.stop_bot()
