@@ -5,6 +5,7 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 from dialogflow_service import DialogFlowService
 
+logger = logging.getLogger(__name__)
 
 class VkBot:
     def __init__(self):
@@ -33,6 +34,7 @@ class VkBot:
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
+    logger.setLevel(level=logging.INFO)
 
     vk_bot = VkBot()
     vk_bot.start_bot()
