@@ -15,13 +15,13 @@ class VkBot:
         self.df_service = DialogFlowService()
 
     def start_bot(self):
-        logging.info('VK bot started longpoll')
+        logger.info('VK bot started longpoll')
         for event in self.longpoll.listen():
             if event.type == VkEventType.MESSAGE_NEW and event.to_me:
                 self._echo(event)
 
     def _echo(self, event):
-        logging.info('VK bot receive echo message from {}'.format(
+        logger.info('VK bot receive echo message from {}'.format(
             event.user_id))
         df_response = self.df_service.detect_intent_texts(
             session_id=event.user_id, text=event.text)

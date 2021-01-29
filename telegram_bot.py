@@ -18,8 +18,6 @@ class TelegramBot:
         self.updater.dispatcher.add_handler(
             MessageHandler(Filters.text, self._echo_handler))
 
-        self.updater.start_polling()
-
     def _start_handler(self, bot, update):
         chat_id = update.message.chat_id
         logger.info('Bot was started by {}'.format(chat_id))
