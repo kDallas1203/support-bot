@@ -11,7 +11,7 @@ class TelegramBot:
     def __init__(self):
         self.updater = Updater(os.environ['TELEGRAM_BOT_TOKEN'])
 
-        self.df_service = DialogFlowService('tg')
+        self.df_service = DialogFlowService(session_prefix='tg')
 
         self.updater.dispatcher.add_handler(
             CommandHandler('start', self._start_handler))

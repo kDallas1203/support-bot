@@ -1,5 +1,6 @@
-import os
 import logging
+import os
+
 from google.cloud import dialogflow
 
 
@@ -9,14 +10,20 @@ class DialogFlowService:
 
     def __init__(self, session_prefix):
         self.session_client = dialogflow.SessionsClient()
-	self.session_prefix = session_prefix
+        self.session_prefix = session_prefix
 
-    def __get_session(self, session_id):
+    def _get_session(self, session_id):
         return self.session_client.session_path(
             self.__PROJECT_ID, session_id)
 
+    def _get_session_id(self, session_id):
+        if self.session_prefix:
+            return "{}_{}".format(self.session_prefix, session_id)
+
+        return session_id
+
     def detect_intent_texts(self, session_id, text):
-        session = self.__get_session("{}_{}".format(self.session_prefix, session_id))
+        session = self._get_session(self._get_session_id(session_id))
 
         text_input = dialogflow.TextInput(
             text=text, language_code=self.__GOOGLE_LANGUAGE_CODE)
