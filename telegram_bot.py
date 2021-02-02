@@ -16,14 +16,14 @@ class TelegramBot:
         self.updater.dispatcher.add_handler(
             CommandHandler('start', self._start_handler))
         self.updater.dispatcher.add_handler(
-            MessageHandler(Filters.text, self._echo_handler))
+            MessageHandler(Filters.text, self._send_answer))
 
     def _start_handler(self, bot, update):
         chat_id = update.message.chat_id
         logger.info('Bot was started by {}'.format(chat_id))
         bot.send_message(chat_id=chat_id, text='Здрвствуйте!')
 
-    def _echo_handler(self, bot, update):
+    def _send_answer(self, bot, update):
         logger.info('Telegram bot receive echo message from {}'.format(
             update.message.chat_id))
         df_response = self.df_service.detect_intent_texts(

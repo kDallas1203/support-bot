@@ -18,9 +18,9 @@ class VkBot:
         logger.info('VK bot started longpoll')
         for event in self.longpoll.listen():
             if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-                self._echo(event)
+                self._send_answer(event)
 
-    def _echo(self, event):
+    def _send_answer(self, event):
         logger.info('VK bot receive echo message from {}'.format(
             event.user_id))
         df_response = self.df_service.detect_intent_texts(
