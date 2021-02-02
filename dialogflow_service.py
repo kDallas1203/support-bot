@@ -7,15 +7,16 @@ class DialogFlowService:
     __GOOGLE_LANGUAGE_CODE = 'ru'
     __PROJECT_ID = os.environ.get('DIALOG_FLOW_PROJECT_ID')
 
-    def __init__(self):
+    def __init__(self, session_prefix):
         self.session_client = dialogflow.SessionsClient()
+	self.session_prefix = session_prefix
 
     def __get_session(self, session_id):
         return self.session_client.session_path(
             self.__PROJECT_ID, session_id)
 
     def detect_intent_texts(self, session_id, text):
-        session = self.__get_session(session_id)
+        session = self.__get_session("{}_{}".format(self.session_prefix, session_id))
 
         text_input = dialogflow.TextInput(
             text=text, language_code=self.__GOOGLE_LANGUAGE_CODE)

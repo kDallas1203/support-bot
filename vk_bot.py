@@ -12,7 +12,7 @@ class VkBot:
         vk_session = vk_api.VkApi(token=os.environ['VK_API_KEY'])
         self.vk_api = vk_session.get_api()
         self.longpoll = VkLongPoll(vk_session)
-        self.df_service = DialogFlowService()
+        self.df_service = DialogFlowService('vk')
 
     def start_bot(self):
         logger.info('VK bot started longpoll')
