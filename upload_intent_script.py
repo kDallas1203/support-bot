@@ -26,11 +26,7 @@ def serialize_questions(question):
 
 
 def get_intent_message(answer):
-    print('answer', answer)
-    text = dialogflow.Intent.Message.Text(text=[answer])
-    message = dialogflow.Intent.Message(text=text)
-
-    return message
+    return dialogflow.Intent.Message(text=text)
 
 
 def get_intents(questions):
